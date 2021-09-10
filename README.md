@@ -44,7 +44,7 @@ Comandos para rodar a aplicação / Commands to run application:
 
 UML:
 
-![Screenshot](https://git.gft.com/vsav/vaccination-mvc/-/raw/master/Images/UML.jpg)
+![Screenshot](https://github.com/Vinicius-92/vaccination-aspnet-mvc/blob/main/Images/UML.jpg?raw=true)
 
 
 PT-br:
@@ -59,8 +59,8 @@ Records with relation in the database can't be deleted to mantain database integ
 Records of vaccination can't be deleted by project desing.
 
 
-![Screenshot](https://git.gft.com/vsav/vaccination-mvc/-/raw/master/Images/Index.jpg)
-![Screenshot](https://git.gft.com/vsav/vaccination-mvc/-/raw/master/Images/Person.jpg)
-![Screenshot](https://git.gft.com/vsav/vaccination-mvc/-/raw/master/Images/Record.jpg)
+![Screenshot](https://github.com/Vinicius-92/vaccination-aspnet-mvc/blob/main/Images/Index.jpg?raw=true)
+![Screenshot](https://github.com/Vinicius-92/vaccination-aspnet-mvc/blob/main/Images/Person.jpg?raw=true)
+![Screenshot](https://github.com/Vinicius-92/vaccination-aspnet-mvc/blob/main/Images/Record.jpg?raw=true)
 
 
