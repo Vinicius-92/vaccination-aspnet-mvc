@@ -1,0 +1,47 @@
+@model IEnumerable<Vaccination.Models.DTO.VaccineDTO>
+@{
+    Layout = "_Layout";
+}
+
+<h2>Vaccines</h2>
+<hr>
+
+<a asp-action="Create" asp-controller="Vaccine" class="btn btn-primary">Create new vaccine</a>
+<a asp-action="Index" asp-controller="VaccineBatch" class="float-right btn btn-dark">View vaccine batche's</a>
+<hr>
+<div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Laboratory</th>
+      <th scope="col">Posology</th>
+      <th scope="col">Interval between doses</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var vaccine in Model)
+      {
+        <tr class="text-center">
+            <th scope="row">@vaccine.Id</th>
+            <td>@vaccine.Name</td>
+            <td>@vaccine.Laboratory</td>
+            <td>@vaccine.Posology dose</td>
+            <td>@vaccine.IntervalBetweenDoses days</td>
+            <td>
+              <td>
+                <div class="form-inline">
+                  <a asp-action="Edit" asp-route-id="@vaccine.Id" class="btn btn-primary">Edit</a>
+                  <form asp-action="Delete" asp-controller="Vaccine">
+                    <div class="form-group ml-1 inline">
+                        <button asp-controller="Vaccine" asp-action="Delete" asp-route-id="@vaccine.Id" class="btn btn-danger">Delete</button>
+                    </div>
+                  </form>
+                 </div>
+              </td>
+        </tr>
+      }
+  </tbody>
+</table>

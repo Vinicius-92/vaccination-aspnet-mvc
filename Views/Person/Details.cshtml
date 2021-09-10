@@ -1,0 +1,102 @@
+@model Vaccination.Models.DTO.PersonDTO
+@{
+    Layout = "_Layout";
+}
+
+<div class="form-group float-right">
+    <a asp-controller="Person" asp-action="Index" class="btn btn-dark">Return to list</a>
+</div>
+<h2>Person data</h2>
+
+<h2>Details</h2>
+
+<div class="container w-50 float-left">
+    <hr/>
+    <h4>Person</h4>
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.Cpf
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.BirthDate.ToShortDateString()
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AddressDTO.CEP)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AddressDTO.CEP
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AddressDTO.Street)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AddressDTO.Street
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AddressDTO.Number)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AddressDTO.Number
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AddressDTO.Complement)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AddressDTO.Complement
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AddressDTO.City)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AddressDTO.City
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AddressDTO.State)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AddressDTO.State
+        </dd>
+    </dl>
+    <div class="form-inline">
+        <form asp-action="Delete" asp-controller="Person">
+            <div class="form-group ml-1">
+                <button asp-controller="Person" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+        <form asp-action="Edit" asp-controller="Person">
+            <div class="form-group ml-1">
+                <a asp-controller="Person" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark">Edit</a>
+            </div>
+        </form>
+    </div>
+</div>
+<br><br>
+
+<div class="row w-50 float right">
+@foreach (var record in @ViewBag.Records)
+{
+        <div class="col-sm-6">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Dose @record.Dose</h5>
+                <p>@record.Date.ToShortDateString()</p>
+                <p>@record.VaccineBatchDTO.Vaccine.Name</p>
+                <p>@record.VaccinationPointDTO.Name</p>
+                <a href="/Vaccine" class="btn btn-primary">Details</a>
+            </div>
+            </div>
+        </div>
+}
+</div>

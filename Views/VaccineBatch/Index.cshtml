@@ -1,0 +1,44 @@
+@model IEnumerable<Vaccination.Models.DTO.VaccineBatchDTO>
+@{
+    Layout = "_Layout";
+}
+
+<h2>Vaccine batche's</h2>
+<hr>
+
+
+<a asp-action="Create" asp-controller="VaccineBatch" class="btn btn-primary">Create new vaccine batch</a>
+<hr>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Vaccine</th>
+      <th scope="col">Batch Id</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Expiration</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var batch in Model)
+      {
+        <tr class="text-center">
+            <th scope="row">@batch.Id</th>
+            <td>@batch.Vaccine.Name</td>
+            <td>@batch.IdentificationCode</td>
+            <td>@batch.AmountInStock doses</td>
+            <td>@batch.ExpirationDate.ToShortDateString()</td>
+            <td>
+              <td  class="form-inline">
+                  <a asp-action="Edit" asp-route-id="@batch.Id" class="btn btn-primary">Details</a>
+                  <form asp-action="Delete" asp-controller="Vaccine">
+                    <div class="form-group ml-1 inline">
+                        <button asp-controller="VaccineBatch" asp-action="Delete" asp-route-id="@batch.Id" class="btn btn-danger">Delete</button>
+                    </div>
+                  </form>
+              </td>
+        </tr>
+      }
+  </tbody>
+</table>

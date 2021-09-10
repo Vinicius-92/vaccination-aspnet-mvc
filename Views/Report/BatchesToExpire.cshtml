@@ -1,0 +1,31 @@
+@model IEnumerable<Vaccination.Models.DTO.VaccineBatchDTO>
+@{
+    Layout = "_Layout";
+}
+
+<h2>Vaccine batches to expire</h2>
+<hr>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Vaccine</th>
+      <th scope="col">Batch Id</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Expiration</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var batch in Model)
+      {
+        <tr>
+            <th scope="row">@batch.Id</th>
+            <td>@batch.Vaccine.Name</td>
+            <td>@batch.IdentificationCode</td>
+            <td>@batch.AmountInStock doses</td>
+            <td>@batch.ExpirationDate.ToShortDateString()</td>
+        </tr>
+      }
+  </tbody>
+</table>

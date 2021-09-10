@@ -1,0 +1,106 @@
+@model Vaccination.Models.DTO.VaccinationPointDTO
+@{
+    Layout = "_Layout";
+}
+
+<h2>Create a new vaccination point</h2>
+
+
+
+<h4>Vaccination point</h4>
+<hr>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="VaccinationPoint">
+            <div asp-validation-summary="All" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AddressDTO.CEP" class="control-label"></label>
+                <input asp-for="AddressDTO.CEP" id="cep" for="cep" class="form-control" />
+                <span asp-validation-for="AddressDTO.CEP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressDTO.Street" class="control-label"></label>
+                <input asp-for="AddressDTO.Street" id="street" for="street" class="form-control" />
+                <span asp-validation-for="AddressDTO.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressDTO.Number" class="control-label"></label>
+                <input asp-for="AddressDTO.Number" id="number" for="number" type="number" class="form-control" />
+                <span asp-validation-for="AddressDTO.Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressDTO.Complement" class="control-label"></label>
+                <input asp-for="AddressDTO.Complement" class="form-control" />
+                <span asp-validation-for="AddressDTO.Complement" class="text-danger"></span>
+            </div>  
+            <div class="form-group">
+                <label asp-for="AddressDTO.City" class="control-label"></label>
+                <input asp-for="AddressDTO.City" id="city" for="city" class="form-control" />
+                <span asp-validation-for="AddressDTO.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressDTO.State" class="control-label"></label>
+                <select asp-for="AddressDTO.State" id="state" for="state" class="form-control">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                </select>
+                <span asp-validation-for="AddressDTO.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" method="POST" value="Create" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+		$("#cep").focusout(function(){
+			$.ajax({
+				url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+				dataType: 'json',
+				success: function(resposta){
+					$("#street").val(resposta.logradouro);
+					$("#city").val(resposta.localidade);
+					$("#state").val(resposta.uf);
+					$("#number").focus();
+				}
+			});
+		});
+	</script>
+    @{await Html.RenderPartialAsync("_ValidatioNscriptsPartial");}
+}

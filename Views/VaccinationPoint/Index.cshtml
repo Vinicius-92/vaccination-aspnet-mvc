@@ -1,0 +1,39 @@
+@model IEnumerable<Vaccination.Models.DTO.VaccinationPointDTO>
+@{
+    Layout = "_Layout";
+}
+
+<h2>Vaccination Points</h2>
+<hr>
+
+<a asp-action="Create" asp-controller="VaccinationPoint" class="btn btn-primary">Create new point</a>
+<hr>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var point in Model)
+      {
+        <tr>
+            <th scope="row">@point.Id</th>
+            <td>@point.Name</td>
+            <td>@point.AddressDTO.City</td>
+            <td>@point.AddressDTO.State</td>
+            <td>
+              <td style="display: inline;">
+                <a asp-action="Details" asp-route-id="@point.Id" class="mt-2 btn btn-dark">Details</a>
+                <a asp-action="Edit" asp-route-id="@point.Id" class="mt-2 btn btn-primary">Edit</a>
+              </td> 
+            </td>
+        </tr>
+      }
+  </tbody>
+</table>

@@ -1,0 +1,66 @@
+@model Vaccination.Models.DTO.VaccinationRecordDTO
+@{
+    Layout = "_Layout";
+}
+
+<h2>Create a new vaccination record</h2>
+
+
+
+<h4>Vaccination details</h4>
+<hr>
+
+<div class="container w-75 float-left mb-6">
+    <div class="col-sm-6">
+        <form asp-action="Create" asp-controller="VaccinationRecord">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="PersonId" value="@ViewBag.Person.Id">     
+            
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" type="datetime" class="form-control" disabled value="@DateTime.Now"/>
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+ 
+            <div class="form-group">
+                <label asp-for="Dose" class="control-label"></label>
+                <input type="hidden" asp-for="Dose" name="Dose" value="@ViewBag.Dose" class="form-control"/>
+                <input value="@ViewBag.Dose" class="form-control" disabled/>
+                <span asp-validation-for="Dose" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VaccinationPointId" class="control-label">Vaccination point</label>
+                <select asp-for="VaccinationPointId" asp-items="@(new SelectList(@ViewBag.Points, "Id","Name"))" class="form-control"></select>
+            </div>
+            <div class="form-group inline">
+                <label asp-for="VaccineBatchId" class="control-label col-sm-4">Vaccine batch</label>
+                <select asp-for="VaccineBatchId" id="VaccineBatchId" asp-items="@(new SelectList(@ViewBag.Batch, "Id","IdentificationCode"))" class="form-control"></select>
+            </div>
+            
+            <div class="form-group ml-3">
+                <input type="submit" method="POST" value="Create" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row w-25 float-right mt-4 inline">
+        <div class="col">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Person data</h5>
+                <dt>Name</dt>
+                <dd>@ViewBag.Person.Name</dd>
+                <dt>Birth day</dt>
+                <dd>@ViewBag.Person.BirthDate.ToShortDateString()</dd>
+                <a href="#" class="btn btn-primary">Details</a>
+            </div>
+            </div>
+        </div>
+</div>
+
+@section Scripts {      
+    @{await Html.RenderPartialAsync("_ValidatioNscriptsPartial");}
+}

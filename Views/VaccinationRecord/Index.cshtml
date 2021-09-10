@@ -1,0 +1,46 @@
+@model IEnumerable<Vaccination.Models.DTO.VaccinationRecordDTO>
+@{
+    Layout = "_Layout";
+}
+
+<h2>Vaccination Records</h2>
+<hr>
+
+<div>
+  <a asp-action="CreateFor" asp-controller="VaccinationRecord" class="btn btn-primary">Create new vaccination record</a>
+</div>
+
+
+<hr>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Person</th>
+      <th scope="col">Vaccine Batch</th>
+      <th scope="col">Vaccination point</th>
+      <th scope="col">Dose</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var record in Model)
+      {
+        <tr class="text-center">
+            <th scope="row">@record.Id</th>
+            <td>@record.Date.ToShortDateString()</td>
+            <td>@record.PersonDTO.Name</td>
+            <td>@record.VaccineBatchDTO.IdentificationCode</td>
+            <td>@record.VaccinationPointDTO.Name</td>
+            <td>@record.Dose</td>
+            <td>
+              <td>
+                <div class="form-inline">
+                  <a href="/Person/Details/@record.PersonId"class="btn btn-primary">Details</a>
+                 </div>
+              </td>
+        </tr>
+      }
+  </tbody>
+</table>

@@ -1,0 +1,60 @@
+@model Vaccination.Models.DTO.VaccinationPointDTO
+@{
+    Layout = "_Layout";
+}
+
+<h4>Vaccination point</h4>
+<hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Details" asp-controller="VaccinationPoint">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id">
+           
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" disabled />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AddressDTO.CEP" class="control-label"></label>
+                <input asp-for="AddressDTO.CEP" class="form-control" disabled />
+                <span asp-validation-for="AddressDTO.CEP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressDTO.Street" class="control-label"></label>
+                <input asp-for="AddressDTO.Street" class="form-control" disabled />
+                <span asp-validation-for="AddressDTO.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressDTO.Number" class="control-label"></label>
+                <input asp-for="AddressDTO.Number" type="number" class="form-control" disabled />
+                <span asp-validation-for="AddressDTO.Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressDTO.Complement" class="control-label"></label>
+                <input asp-for="AddressDTO.Complement" class="form-control" disabled />
+                <span asp-validation-for="AddressDTO.Complement" class="text-danger"></span>
+            </div>  
+            <div class="form-group">
+                <label asp-for="AddressDTO.City" class="control-label"></label>
+                <input asp-for="AddressDTO.City" class="form-control" disabled />
+                <span asp-validation-for="AddressDTO.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressDTO.State" class="control-label"></label>
+                <input asp-for="AddressDTO.State" class="form-control" disabled />
+                <span asp-validation-for="AddressDTO.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-controller="VaccinationPoint" asp-action="Index" class="btn btn-dark">Return to list</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidatioNscriptsPartial");}
+}

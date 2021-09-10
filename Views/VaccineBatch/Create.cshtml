@@ -1,0 +1,53 @@
+@model Vaccination.Models.DTO.VaccineBatchDTO
+@{
+    Layout = "_Layout";
+}
+
+<div class="form-group float-right">
+    <a asp-controller="VaccineBatch" asp-action="Index" class="btn btn-dark">Return to list</a>
+</div>
+
+<h2>Create a new vaccine batch</h2>
+
+<h4>Vaccine batch information</h4>
+<hr>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="VaccineBatch">
+            <div asp-validation-summary="All" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="IdentificationCode" class="control-label"></label>
+                <input asp-for="IdentificationCode" class="form-control" />
+                <span asp-validation-for="IdentificationCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountReceived" class="control-label">Amount received</label>
+                <input asp-for="AmountReceived" class="form-control" />
+                <span asp-validation-for="AmountReceived" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryDate" class="control-label">Delivery date</label>
+                <input asp-for="DeliveryDate" class="form-control" />
+                <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpirationDate" class="control-label">Expiration date</label>
+                <input asp-for="ExpirationDate" class="form-control" />
+                <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VaccineDTO" class="control-label">Vaccine</label>
+                <select asp-for="VaccineDTO" asp-items="@(new SelectList(@ViewBag.Vaccines, "Id","Name"))" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" method="POST" value="Create" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidatioNscriptsPartial");}
+}

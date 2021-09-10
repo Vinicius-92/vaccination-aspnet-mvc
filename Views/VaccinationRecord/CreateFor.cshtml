@@ -1,0 +1,30 @@
+@model Vaccination.Models.DTO.PersonDTO
+@{
+    Layout = "_Layout";
+}
+
+<h2>Create a new vaccination record</h2>
+
+
+
+<h4>Select the person for create a new vaccination record</h4>
+<hr>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateRecord" asp-controller="VaccinationRecord">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label">Person</label>
+                <select asp-for="Id" asp-items="@(new SelectList(@ViewBag.People, "Id","Name"))" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" method="GET" value="Create" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidatioNscriptsPartial");}
+}

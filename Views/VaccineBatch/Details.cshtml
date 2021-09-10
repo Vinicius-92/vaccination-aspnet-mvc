@@ -1,0 +1,78 @@
+@model Vaccination.Models.DTO.VaccineBatchDTO
+@{
+    Layout = "_Layout";
+}
+
+<h2>Vaccine batche's</h2>
+<hr>
+
+<h2>Details</h2>
+
+<div class="container w-50 float-left">
+    <hr/>
+    <h4>Batch @Model.IdentificationCode</h4>
+    <dl class="row">
+        <dt class="col-sm-3">
+            @ViewBag.Vaccine.Name
+        </dt>
+        <dd class="col-sm-9">
+            @ViewBag.Vaccine.Name
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IdentificationCode)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.IdentificationCode
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AmountReceived)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AmountReceived
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AmountInStock)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AmountInStock
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.DeliveryDate.ToShortDateString()
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.ExpirationDate.ToShortDateString()
+        </dd>
+    </dl>
+    <div class="form-inline">
+        <form asp-action="Delete" asp-controller="VaccineBatch">
+            <div class="form-group ml-1">
+                <button asp-controller="VaccineBatch" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+        <form asp-action="Edit" asp-controller="VaccineBatch">
+            <div class="form-group ml-1">
+                <a asp-controller="VaccineBatch" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark">Edit</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row w-50 float right mt-4">
+        <div class="col-sm-6">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@ViewBag.Vaccine.Name</h5>
+                <p>@ViewBag.Vaccine.Laboratory</p>
+                <p>@ViewBag.Vaccine.Posology dose</p>
+                <p>@ViewBag.Vaccine.IntervalBetweenDoses days interval</p>
+                <a href="/Vaccine/" class="btn btn-primary">View vaccines</a>
+            </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,41 @@
+@{
+    Layout = "_Layout";
+}
+
+<h2>Start Vaccination Reports</h2>
+<hr>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Report name</th>
+      <th scope="col">Access Role</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+        <tr>
+            <th scope="row"></th>
+            <td>People missing 2nd dose</td>
+            <td>Everyone</td>
+            <td></td>
+            <td>
+              <td style="display: inline;">
+                <a href="Report/ListForSecondDose" class="mt-2 btn btn-dark">Details</a>
+              </td> 
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            <td>Vaccine batches to expire</td>
+            <td>Administrator Only</td>
+            <td></td>
+            <td>
+              <td style="display: inline;">
+                <a href="Report/BatchesToExpire" class="mt-2 btn btn-dark">Details</a>
+              </td> 
+            </td>
+        </tr>
+  </tbody>
+</table>

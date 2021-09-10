@@ -1,0 +1,29 @@
+@model IEnumerable<Vaccination.Models.DTO.PersonDTO>
+@{
+    Layout = "_Layout";
+}
+
+<h2>People for second dose</h2>
+<hr>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">CPF</th>
+      <th scope="col">City</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var person in Model)
+      {
+        <tr>
+            <th scope="row">@person.Id</th>
+            <td>@person.Name</td>
+            <td>@person.Cpf</td>
+            <td>@person.AddressDTO.City</td>
+        </tr>
+      }
+  </tbody>
+</table>
